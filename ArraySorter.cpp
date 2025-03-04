@@ -17,6 +17,7 @@ int main() {
 	}
 
 	std::cout << "\n\nМассив после сортировки:" << std::endl;
+
 	int collector = 0;
 	for (int i = 1; i < SIZE; i++) {
 		for (int index = 0; index < SIZE - i - 1; index++) {
