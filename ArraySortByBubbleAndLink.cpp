@@ -1,31 +1,35 @@
 ﻿#include <iostream>
-#include <cstdlib>
+#include <ctime>
 
 int main() {
-	srand(2);
-	int array[10];
-	std::cout << "BEFORE SORT: " << std::endl;
-	for (int& x : array) {
-		x = rand() % 50;
-		std::cout << x << " | ";
+	setlocale(LC_ALL, "RU");
+
+	const int SIZE = 10;
+	int array[SIZE];
+
+	srand(time(NULL));
+
+	std::cout << "Массив до сортировки:\n\n";
+
+	for (int i = 0; i < SIZE; i++) {
+		array[i] = rand() % 10 + 5;
+		std::cout << "[" << array[i] << "]" << " ";
 	}
 
-	int temp = 0;
-
-	for (int i = 0; i < 10; i++) {
-		for (int index = 0; index < 9 - i; index++) {
+	std::cout << "\n\nМассив после сортировки:" << std::endl;
+	int collector = 0;
+	for (int i = 1; i < SIZE; i++) {
+		for (int index = 0; index < SIZE - i - 1; index++) {
 			if (array[index] > array[index + 1]) {
-				temp = array[index];
-				array[index] = array[index + 1];
-				array[index + 1] = temp;
+				collector = array[index + 1];
+				array[index + 1] = array[index];
+				array[index] = collector;
 			}
 		}
 	}
 
-	std::cout << std::endl << "AFTER SORT: " << std::endl;
-
-	for (int i = 0; i < 10; i++) {
-		std::cout << array[i] << " | ";
+	for (int i = 0; i < SIZE; i++) {
+		std::cout << "[" << array[i] << "]" << " ";
 	}
 
 	return 0;
